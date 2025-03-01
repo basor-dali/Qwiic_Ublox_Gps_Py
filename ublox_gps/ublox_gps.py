@@ -175,6 +175,19 @@ class UbloxGps(object):
         self.thread.daemon = True
         self.thread.start()
 
+    def enable_continuous_output(self):
+        """
+        Enable continuous output for NAV-PVT and NAV-RELPOSNED messages.
+        """
+        self.set_auto_msg('NAV', 'PVT', 1)  # Enable NAV-PVT message
+        self.set_auto_msg('NAV', 'RELPOSNED', 1)  # Enable NAV-RELPOSNED message
+
+    def disable_continuous_output(self):
+        """
+        Disable continuous output for NAV-PVT and NAV-RELPOSNED messages.
+        """
+        self.set_auto_msg('NAV', 'PVT', 0)  # Disable NAV-PVT message
+        self.set_auto_msg('NAV', 'RELPOSNED', 0)  # Disable NAV-RELPOSNED message
 
     def set_packet(self, cls_name, msg_name, payload):
         """
